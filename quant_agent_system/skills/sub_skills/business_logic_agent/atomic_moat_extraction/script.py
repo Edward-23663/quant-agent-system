@@ -2,21 +2,28 @@ import os
 import sys
 import json
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
-from core.vector_store import VectorStore
-
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
+sys.path.insert(0, PROJECT_ROOT)
 
 def main():
     params = json.loads(os.environ.get("SKILL_PARAMS", "{}"))
     ticker = params.get("ticker", "")
+    ticker = ticker.replace(".SH", "").replace(".SZ", "").replace(".sh", "").replace(".sz", "")
 
     query = f"{ticker} 核心竞争力 护城河 提价 定价权 市占率 垄断 专利 用户粘性"
+    results = []
 
     try:
+        from core.vector_store import VectorStore
         vs = VectorStore()
         results = vs.search(query=query, limit=5, where_clause=f"ticker = '{ticker}'")
     except Exception as e:
-        results = []
+        print(json.dumps({
+            "ticker": ticker,
+            "moat_evidence_found": False,
+            "raw_evidence": [f"向量库检索失败: {str(e)}"]
+        }))
+        return
 
     if not results:
         print(json.dumps({
