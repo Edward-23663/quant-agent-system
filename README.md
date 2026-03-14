@@ -3,12 +3,12 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.10+-blue.svg" alt="Python">
   <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License">
-  <img src="https://img.shields.io/badge/AI-Agent-7%20Agents-orange.svg" alt="Agents">
+  <img src="https://img.shields.io/badge/AI-Agent-9%20Agents-orange.svg" alt="Agents">
 </p>
 
 ## 项目简介
 
-Quant Agent System 是一个基于大语言模型(LLM)的金融量化分析AI Agent系统，包含7个专业子智能体，支持DCF/PE/PB估值、杜邦分析、行业轮动、舆情分析、事件催化、风险测算等全面的金融分析功能。
+Quant Agent System 是一个基于大语言模型(LLM)的金融量化分析AI Agent系统，包含9大专业子智能体，支持DCF/PE/PB估值、杜邦分析、行业轮动、舆情分析、事件催化、风险测算、技术分析、商业逻辑与第一性原理分析等全面的金融分析功能。
 
 ## 系统架构
 
@@ -38,7 +38,7 @@ Quant Agent System 是一个基于大语言模型(LLM)的金融量化分析AI Ag
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-## 7大专业智能体
+## 9大专业智能体
 
 | 智能体 | 职责 | 核心技能数 |
 |--------|------|------------|
@@ -49,6 +49,8 @@ Quant Agent System 是一个基于大语言模型(LLM)的金融量化分析AI Ag
 | **catalyst_agent** | 找重大事件、催化剂 | 4 |
 | **comprehensive_agent** | 高阶物理/数学模型、测算Hurst分形 | 6 |
 | **risk_agent** | 测算最大回撤、波动率、VaR尾部暴跌风险、止损线与仓位控制 | 5 |
+| **technical_agent** | 技术指标、趋势判断、量价分析、交易计划 | 5 |
+| **business_logic_agent** | 商业模式、护城河、单位经济模型、第一性原理分析 | 4 |
 
 ### 智能体详细说明
 
@@ -114,6 +116,23 @@ Quant Agent System 是一个基于大语言模型(LLM)的金融量化分析AI Ag
   - `atomic_liquidity_risk` - 流动性风险
   - `composite_risk_matrix` - 多维风险矩阵
   - `business_risk_control` - 仓位控制与止损
+
+#### 8. Technical Agent (技术分析智能体)
+- **职责**: 技术指标、趋势判断、量价分析、交易计划
+- **技能**:
+  - `atomic_trend_indicators` - 趋势指标(MA/EMA)
+  - `atomic_momentum_oscillators` - 动量震荡指标(MACD/RSI)
+  - `atomic_volume_price_action` - 量价分析
+  - `composite_signal_consensus` - 多指标信号共识
+  - `business_trading_plan` - 交易计划与仓位建议
+
+#### 9. Business Logic Agent (商业逻辑与第一性原理智能体)
+- **职责**: 商业模式分析、护城河评估、单位经济模型
+- **技能**:
+  - `atomic_unit_economics` - 单位经济模型
+  - `atomic_moat_extraction` - 护城河定性证据
+  - `composite_first_principles` - 第一性原理分析
+  - `business_model_sustainability` - 商业模式可持续性
 
 ## 技能卡带规范
 
@@ -279,14 +298,16 @@ quant_agent_system/
 ├── agents/                      # Agent模块
 │   ├── main_orchestrator.py    # 主编排器
 │   ├── base_sub_agent.py       # Agent基类
-│   └── specialized/             # 7大专业智能体
+│   └── specialized/             # 9大专业智能体
 │       ├── industry_agent.py
 │       ├── fundamental_agent.py
 │       ├── valuation_agent.py
 │       ├── sentiment_agent.py
 │       ├── catalyst_agent.py
 │       ├── comprehensive_agent.py
-│       └── risk_agent.py
+│       ├── risk_agent.py
+│       ├── technical_agent.py
+│       └── business_logic_agent.py
 ├── core/                        # 核心模块
 │   ├── llm_adapter.py          # LLM适配器
 │   ├── redis_bus.py            # Redis消息总线
@@ -300,7 +321,9 @@ quant_agent_system/
 │       ├── sentiment_agent/
 │       ├── catalyst_agent/
 │       ├── comprehensive_agent/
-│       └── risk_agent/
+│       ├── risk_agent/
+│       ├── technical_agent/
+│       └── business_logic_agent/
 ├── data/                        # 数据层
 │   ├── init_db.py              # 数据库初始化
 │   ├── workers/                # 数据获取 workers
@@ -333,7 +356,7 @@ ruff format quant_agent_system/
 
 1. **智能路由**: 基于关键词和语义理解的智能任务分发
 2. **DAG任务调度**: 支持并行/串行任务编排
-3. **30+技能卡带**: 覆盖估值、分析、风险全流程
+3. **35+技能卡带**: 覆盖估值、分析、风险、技术、商业逻辑全流程
 4. **防前视偏差**: 所有金融数据使用 announce_date 过滤
 5. **异步消息队列**: Redis驱动的高效任务调度
 6. **可视化报告**: 自动生成Markdown/PDF分析报告
