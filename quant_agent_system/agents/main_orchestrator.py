@@ -194,8 +194,7 @@ class MainOrchestrator:
 - 包含"综合"、"宏观"、"长期" → 必须调用 comprehensive_agent
 
 【规则】：如果用户输入同时涉及多个领域，可以分配多个子任务。关键词优先级高于其他判断。"""
-- 如果用户提到"风险"、"回撤"、"暴跌"、"止损"、"仓位"、"安全"等字眼，你【必须】生成一个 target_agent 为 'risk_agent' 的子任务！绝对不可遗漏！"""
-        
+
         model = os.getenv("LLM_MODEL", "gpt-4-turbo")
         return self.client.chat.completions.create(
             model=model,
