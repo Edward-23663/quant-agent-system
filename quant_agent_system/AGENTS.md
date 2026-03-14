@@ -305,15 +305,59 @@ if __name__ == "__main__":
 
 ## 常见任务
 
+### 智能体架构铁律 (必须遵守)
+
+添加新智能体时，必须同时修改以下3个位置：
+
+#### 1. Literal 类型约束 (main_orchestrator.py)
+```python
+from typing import Literal
+
+class SubTask(BaseModel):
+    target_agent: Literal[
+        "industry_agent",
+        "fundamental_agent",
+        "valuation_agent",
+        "sentiment_agent",
+        "catalyst_agent",
+        "comprehensive_agent",
+        "risk_agent",  # 👈 新增智能体必须加这里
+    ] = Field(..., description="负责处理此任务的分智能体名称标识")
+```
+
+#### 2. Agent 注册表 (main_orchestrator.py)
+```python
+self.agent_registry = {
+    "industry_agent": IndustryAgent(),
+    # ...其他智能体
+    "risk_agent": RiskAgent()  # 👈 新增智能体必须加这里
+}
+```
+
+#### 3. System Prompt 路由规则
+在 `_plan_dag` 方法的 sys_prompt 中添加：
+```
+【强制路由规则】：
+- 包含"关键词1"、"关键词2"、"关键词3" → 必须调用 new_agent
+```
+
+#### 为什么必须用 Literal？
+- **防止漏调**: 大模型可能"忘记"调用某个智能体
+- **架构级约束**: 在API层面强制限制输出选项
+- **0柔性**: 自然语言Prompt易被忽略，Literal是代码级锁死
+
 ### 添加新技能
 1. 在 `skills/sub_skills/{agent_name}/` 下创建目录
 2. 编写 `skill.md`, `config.json`, `script.py`
 3. 测试脚本: `python skills/sub_skills/{agent_name}/{skill_name}/script.py`
 
 ### 添加新 Agent
-1. 在 `agents/specialized/` 创建 `{name}_agent.py`
-2. 继承 `BaseSubAgent` 类
-3. 在 `main_orchestrator.py` 注册
+> ⚠️ **警告**: 添加新智能体时必须同时修改以下3处，否则系统无法识别！
+
+1. 在 `agents/specialized/` 创建 `{name}_agent.py`，继承 `BaseSubAgent` 类
+2. 在 `main_orchestrator.py` 的 `SubTask.target_agent` 的 `Literal` 类型中添加新智能体名称
+3. 在 `main_orchestrator.py` 的 `agent_registry` 字典中注册新智能体实例
+4. 在 `_plan_dag` 方法的 sys_prompt 中添加关键词路由规则
 
 ### 添加数据库表
 1. 在 `data/init_db.py` 添加 CREATE TABLE 语句
