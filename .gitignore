@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+
+# 数据库
+data/db/*.duckdb
+data/db/*.lance
+data/db/vector_index.lance/
+
+# 输出
+data/output/
+
+# 敏感配置
+.env
+.env.*
+
+# 系统
+.DS_Store
+.idea/
+.vscode/
+
+# OpenCode
+.opencode/node_modules/
+
+# Doc backups
+doc-bak/

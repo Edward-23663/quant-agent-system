@@ -1,0 +1,5 @@
+{
+  "required_data": [
+    {"table": "market_daily_qfq", "min_records": 250, "description": "计算Hurst指数需要至少1年数据"}
+  ]
+}

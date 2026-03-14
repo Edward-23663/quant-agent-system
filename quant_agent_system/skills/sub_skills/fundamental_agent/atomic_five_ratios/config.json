@@ -1,0 +1,9 @@
+{
+  "required_data": [
+    {
+      "table": "financial_statements",
+      "min_records": 2,
+      "description": "需要至少2期历史数据计算增速(如营收增长率)"
+    }
+  ]
+}

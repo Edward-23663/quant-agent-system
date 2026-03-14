@@ -1,0 +1,5 @@
+{
+  "required_data": [
+    {"table": "market_daily_qfq", "min_records": 250, "description": "需要过去1年(250天)行情计算波动率和回撤"}
+  ]
+}

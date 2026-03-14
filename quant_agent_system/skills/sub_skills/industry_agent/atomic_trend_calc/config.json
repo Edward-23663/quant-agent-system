@@ -1,0 +1,5 @@
+{
+  "required_data": [
+    {"table": "industry_daily", "min_records": 60, "description": "需要行业指数过去60天的行情"}
+  ]
+}

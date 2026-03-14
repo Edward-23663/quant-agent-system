@@ -1,0 +1,5 @@
+{
+  "required_data": [
+    {"table": "market_daily_qfq", "min_records": 100}
+  ]
+}

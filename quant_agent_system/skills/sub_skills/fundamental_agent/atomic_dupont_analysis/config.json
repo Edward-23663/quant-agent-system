@@ -1,0 +1,9 @@
+{
+  "required_data": [
+    {
+      "table": "financial_statements",
+      "min_records": 1,
+      "description": "需要1期财报提取利润、营收与资产负债数据"
+    }
+  ]
+}

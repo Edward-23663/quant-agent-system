@@ -1,0 +1,9 @@
+{
+  "required_data": [
+    {
+      "table": "financial_statements",
+      "min_records": 1,
+      "description": "至少需要1期已公告的财务报表数据"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  # 使用 Redis Stack 镜像，自带可视化界面和增强的数据结构
+  redis:
+    image: redis/redis-stack-server:latest
+    container_name: quant_agent_redis
+    ports:
+      - "6379:6379"     # Redis 协议端口
+      - "8001:8001"     # Redis Insight 可视化管理界面 (浏览器访问 localhost:8001)
+    volumes:
+      - redis_data:/data
+    restart: always
+
+volumes:
+  redis_data:

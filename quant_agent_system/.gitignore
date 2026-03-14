@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+
+# 数据库 (本地私有化数据，不进入版本控制)
+data/db/*.duckdb
+data/db/*.lance
+data/db/vector_index.lance/
+
+# 生成的报告与图表
+data/output/
+data/output/charts/*.png
+data/output/reports/*.pdf
+data/output/reports/*.html
+
+# 敏感配置
+.env
+
+# 系统
+.DS_Store
+.idea/
+.vscode/

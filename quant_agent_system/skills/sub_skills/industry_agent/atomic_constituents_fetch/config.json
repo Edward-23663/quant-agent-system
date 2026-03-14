@@ -1,0 +1,6 @@
+{
+  "required_data": [
+    {"table": "stock_basic", "min_records": 10},
+    {"table": "daily_valuation_metrics", "min_records": 100}
+  ]
+}

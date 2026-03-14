@@ -1,0 +1,6 @@
+{
+  "required_data": [
+    {"table": "financial_statements", "min_records": 12, "description": "过去3年(12季度)已公告财报计算FCF"},
+    {"table": "market_daily_qfq", "min_records": 250, "description": "过去250天前复权行情计算 Beta"}
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "required_data": [
+    {
+      "table": "stock_basic",
+      "min_records": 1,
+      "description": "需要股票基础信息表以查询所属行业"
+    }
+  ]
+}

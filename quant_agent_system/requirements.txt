@@ -1,0 +1,35 @@
+# 核心 Web 与 API
+fastapi
+uvicorn
+sse-starlette
+requests
+
+# 异步与消息总线
+redis
+aioredis
+
+# 数据库与向量检索
+duckdb
+lancedb
+fastembed
+pandas
+numpy
+
+# 大模型编排
+openai
+instructor
+pydantic
+
+# 金融数据
+tushare
+akshare
+
+# 技能执行与排版
+matplotlib
+markdown2
+jinja2
+pdfkit
+markdown
+
+# 文本处理
+bleach

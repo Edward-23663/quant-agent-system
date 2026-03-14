@@ -1,0 +1,5 @@
+{
+  "required_data": [
+    {"table": "daily_valuation_metrics", "min_records": 100, "description": "需要过去至少1年的每日估值指标"}
+  ]
+}
