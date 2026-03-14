@@ -14,12 +14,12 @@ load_dotenv()
 
 from agents.specialized import (
     IndustryAgent, FundamentalAgent, ValuationAgent,
-    SentimentAgent, CatalystAgent, ComprehensiveAgent, RiskAgent
+    SentimentAgent, CatalystAgent, ComprehensiveAgent, RiskAgent, TechnicalAgent
 )
 
 VALID_AGENTS = {
     "industry_agent", "fundamental_agent", "valuation_agent",
-    "sentiment_agent", "catalyst_agent", "risk_agent", "comprehensive_agent"
+    "sentiment_agent", "catalyst_agent", "risk_agent", "comprehensive_agent", "technical_agent"
 }
 
 TICKER_PATTERN = re.compile(r'(\d{6}[.SH]|SZ\d{6})')
@@ -33,7 +33,8 @@ class SubTask(BaseModel):
         "sentiment_agent",
         "catalyst_agent",
         "comprehensive_agent",
-        "risk_agent"
+        "risk_agent",
+        "technical_agent"
     ] = Field(..., description="负责处理此任务的分智能体名称标识")
     
     sub_prompt: str = Field(..., description="发给该分智能体的具体指令，需包含股票代码等明确信息")
@@ -57,7 +58,8 @@ class MainOrchestrator:
             "sentiment_agent": SentimentAgent(),
             "catalyst_agent": CatalystAgent(),
             "comprehensive_agent": ComprehensiveAgent(),
-            "risk_agent": RiskAgent()
+            "risk_agent": RiskAgent(),
+            "technical_agent": TechnicalAgent()
         }
 
     def _extract_ticker(self, prompt: str) -> str:
@@ -170,6 +172,7 @@ class MainOrchestrator:
                 SubTask(target_agent="industry_agent", sub_prompt=prompt),
                 SubTask(target_agent="catalyst_agent", sub_prompt=prompt),
                 SubTask(target_agent="risk_agent", sub_prompt=prompt),
+                SubTask(target_agent="technical_agent", sub_prompt=prompt),
                 SubTask(target_agent="comprehensive_agent", sub_prompt=prompt),
             ])
         
@@ -183,6 +186,7 @@ class MainOrchestrator:
 5. catalyst_agent: 找重大事件、催化剂。
 6. comprehensive_agent: 高阶物理/数学模型、测算Hurst分形。
 7. risk_agent: 测算最大回撤、波动率、VaR尾部暴跌风险、止损线与仓位控制。
+8. technical_agent: 查技术面、量价背离、均线/MACD/KDJ指标、找支撑阻力位与买卖点。
 
 【强制路由规则】（每个智能体3个关键词，精确匹配）：
 - 包含"风险"、"止损"、"回撤" → 必须调用 risk_agent
@@ -192,6 +196,7 @@ class MainOrchestrator:
 - 包含"舆情"、"情绪"、"新闻" → 必须调用 sentiment_agent
 - 包含"催化剂"、"利好"、"利空" → 必须调用 catalyst_agent
 - 包含"综合"、"宏观"、"长期" → 必须调用 comprehensive_agent
+- 包含"技术面"、"买卖点"、"支撑位"、"阻力位"、"均线"、"MACD"、"放量" → 必须调用 technical_agent
 
 【规则】：如果用户输入同时涉及多个领域，可以分配多个子任务。关键词优先级高于其他判断。"""
 

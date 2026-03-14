@@ -1,0 +1,5 @@
+{
+  "required_data": [
+    {"table": "market_daily_qfq", "min_records": 100, "description": "计算长周期均线和MACD至少需要100天数据"}
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "required_data": [
+    {"table": "market_daily_qfq", "min_records": 120, "description": "计算支撑阻力位需要半年数据"}
+  ]
+}

@@ -6,3 +6,4 @@ from .sentiment_agent import SentimentAgent
 from .catalyst_agent import CatalystAgent
 from .comprehensive_agent import ComprehensiveAgent
 from .risk_agent import RiskAgent
+from .technical_agent import TechnicalAgent
