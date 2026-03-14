@@ -370,3 +370,4 @@ self.agent_registry = {
 - **禁止提交 secrets**: `.env` 文件已加入 `.gitignore`
 - **前视偏差红线**: 金融数据必须使用 `announce_date <= target_date` 过滤
 - **长运行任务**: 使用 Redis 消息队列异步处理，避免阻塞
+- **ReAct 循环步数**: 子智能体的 `execute` 方法 `max_steps` 默认值需 >= 10，确保多技能调用链完整执行（每个技能至少1步 + 最终总结1步）
