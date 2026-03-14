@@ -200,8 +200,8 @@ class MainOrchestrator:
 - 包含"舆情"、"情绪"、"新闻" → 必须调用 sentiment_agent
 - 包含"催化剂"、"利好"、"利空" → 必须调用 catalyst_agent
 - 包含"综合"、"宏观"、"长期" → 必须调用 comprehensive_agent
-- 包含"技术面"、"买卖点"、"支撑位"、"阻力位"、"均线"、"MACD"、"放量" → 必须调用 technical_agent
-- 包含"护城河"、"商业模式"、"核心竞争力"、"第一性原理"、"靠什么赚钱"、"长期持有" → 必须调用 business_logic_agent
+- 包含"技术面"、"均线"、"MACD" → 必须调用 technical_agent
+- 包含"护城河"、"商业模式"、"第一性原理" → 必须调用 business_logic_agent
 
 【规则】：如果用户输入同时涉及多个领域，可以分配多个子任务。关键词优先级高于其他判断。"""
 
