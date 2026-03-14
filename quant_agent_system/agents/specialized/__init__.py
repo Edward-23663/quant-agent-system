@@ -7,3 +7,4 @@ from .catalyst_agent import CatalystAgent
 from .comprehensive_agent import ComprehensiveAgent
 from .risk_agent import RiskAgent
 from .technical_agent import TechnicalAgent
+from .business_logic_agent import BusinessLogicAgent

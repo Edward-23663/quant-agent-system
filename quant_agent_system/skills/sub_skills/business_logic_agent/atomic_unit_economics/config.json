@@ -1,0 +1,5 @@
+{
+  "required_data": [
+    {"table": "financial_statements", "min_records": 4, "description": "需要至少4期财报来平滑计算成本结构"}
+  ]
+}
